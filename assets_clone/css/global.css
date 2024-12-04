@@ -721,6 +721,9 @@ input[type="submit"]:hover{
 .btn-check:focus+.btn-two, .btn-two:focus{
     color: var(--color-white);
 }
+.required:focus {
+    border: red 2px solid !important;
+}
 .btn-two:hover,
 .btn-two.active {
     background-color: var(--color-one);

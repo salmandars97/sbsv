@@ -506,95 +506,145 @@ class Leads extends CI_Controller
         redirect(base_url().'Leads/'.$_GET['page'].'?msg=as', 'refresh');
     }
 
-    public function added_leads()
-    {
-        foreach($_POST as $key => $value) {
-            $_POST[$key] = $this->security->xss_clean($value);
-        }
-        foreach($_GET as $key => $value) {
-            $_GET[$key] = $this->security->xss_clean($value);
-        }
-        // error_log($_POST);
-        // error_log($_GET);
-        //validation
-        if($_FILES['datafile']['name'] != "") {
-            $allowed = array('gif', 'png', 'jpg', 'jpeg', 'doc', 'docx', 'pdf');
-            $filename = $_FILES['datafile']['name'];
-            $ext = pathinfo($filename, PATHINFO_EXTENSION);
-            if (!in_array(strtolower($ext), $allowed)) {
-                $errors[] = 'Invalid file type. Only PDF, MS WORD, JPG, GIF and PNG types are accepted.';
-                foreach($errors as $error) {
-                    echo '<script>alert("'.$error.'");</script>';
-                }
-                echo "<script>";
-                echo "window.location.href='javascript:history.go(-1)';";
-                echo "</script>";
-                die();
-            }
-        }
+	public function added_leads()
+	{
+		$this->load->library(['upload', 'form_validation']);
+		
+		$post_data = $this->input->post(NULL, TRUE); // XSS filtering enabled
+		
+		// Validation
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+		
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('error', validation_errors());
+			redirect('back');
+		}
 
-        if($this->input->post('name') == '') {
-            redirect(base_url().'Home', 'refresh');
-        }
-        $id = $this->input->post('id');
-        $destination = $this->input->post('destination');
-        $name = $this->input->post('name');
-        $email = $this->input->post('email');
-        $phone_no = $this->input->post('phone_no');
-        $occupation = $this->input->post('occupation');
-        $que= $this->input->post('que');
-        $message= $this->input->post('message');
+		// File upload configuration
+		$config = [
+			'upload_path'   => './assets/admin/images/file',
+			'allowed_types' => 'gif|png|jpg|jpeg|doc|docx|pdf',
+			'max_size'      => 50000,
+			'encrypt_name'  => TRUE
+		];
+		
+		if (!is_dir($config['upload_path'])) {
+			mkdir($config['upload_path'], 0755, TRUE);
+		}
 
-        $config = array(
-            'upload_path' => './assets/admin/images/file',
-            'allowed_types' => '*',
-            'max_size'      => '50000',
-            'max_width'     => '5024',
-            'max_height'    => '5024',
-            'encrypt_name'  => true,
-            'remove_space'  => false
-        );
+		$this->upload->initialize($config);
+		$data_ary = [
+			'id'          => $post_data['id'],
+			'destination' => $post_data['destination'],
+			'name'        => $post_data['name'],
+			'email'       => $post_data['email'],
+			'phone_no'    => $post_data['phone_no'],
+			'occupation'  => $post_data['occupation'],
+			'message'     => $post_data['message'],
+			'que'         => $post_data['que'],
+			'e_id'        => '0',
+			'date_added'  => date("Y/m/d"),
+		];
 
-        $this->load->library('upload', $config);
-        $this->upload->initialize($config);
+		if ($this->upload->do_upload('datafile')) {
+			$upload_data = $this->upload->data();
+			$data_ary['datafile'] = $upload_data['file_name'];
+		}
+
+		$this->Leads_model->added_leads($data_ary);
+		redirect(base_url() . 'Thanks', 'refresh');
+	}
+
+    // public function added_leads()
+    // {
+    //     foreach($_POST as $key => $value) {
+    //         $_POST[$key] = $this->security->xss_clean($value);
+    //     }
+    //     foreach($_GET as $key => $value) {
+    //         $_GET[$key] = $this->security->xss_clean($value);
+    //     }
+    //     // error_log($_POST);
+    //     // error_log($_GET);
+    //     //validation
+    //     if($_FILES['datafile']['name'] != "") {
+    //         $allowed = array('gif', 'png', 'jpg', 'jpeg', 'doc', 'docx', 'pdf');
+    //         $filename = $_FILES['datafile']['name'];
+    //         $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    //         if (!in_array(strtolower($ext), $allowed)) {
+    //             $errors[] = 'Invalid file type. Only PDF, MS WORD, JPG, GIF and PNG types are accepted.';
+    //             foreach($errors as $error) {
+    //                 echo '<script>alert("'.$error.'");</script>';
+    //             }
+    //             echo "<script>";
+    //             echo "window.location.href='javascript:history.go(-1)';";
+    //             echo "</script>";
+    //             die();
+    //         }
+    //     }
+
+    //     if($this->input->post('name') == '') {
+    //         redirect(base_url().'Home', 'refresh');
+    //     }
+    //     $id = $this->input->post('id');
+    //     $destination = $this->input->post('destination');
+    //     $name = $this->input->post('name');
+    //     $email = $this->input->post('email');
+    //     $phone_no = $this->input->post('phone_no');
+    //     $occupation = $this->input->post('occupation');
+    //     $que= $this->input->post('que');
+    //     $message= $this->input->post('message');
+
+    //     $config = array(
+    //         'upload_path' => './assets/admin/images/file',
+    //         'allowed_types' => '*',
+    //         'max_size'      => '50000',
+    //         'max_width'     => '5024',
+    //         'max_height'    => '5024',
+    //         'encrypt_name'  => true,
+    //         'remove_space'  => false
+    //     );
+
+    //     $this->load->library('upload', $config);
+    //     $this->upload->initialize($config);
 
 
-        if (!$this->upload->do_upload('datafile')) {
-            $data_ary = array(
-                'id' => $id,
-                'destination' => $destination,
-                'name' => $name,
-                'email' => $email,
-                'phone_no' => $phone_no,
-                'occupation' => $occupation,
-                'message' => $message,
-                'que' => $que,
-                'e_id' => '0',
-                'date_added' =>  date("Y/m/d")
-            );
+    //     if (!$this->upload->do_upload('datafile')) {
+    //         $data_ary = array(
+    //             'id' => $id,
+    //             'destination' => $destination,
+    //             'name' => $name,
+    //             'email' => $email,
+    //             'phone_no' => $phone_no,
+    //             'occupation' => $occupation,
+    //             'message' => $message,
+    //             'que' => $que,
+    //             'e_id' => '0',
+    //             'date_added' =>  date("Y/m/d")
+    //         );
 
-            $result = $this->Leads_model->added_leads($data_ary);
-            redirect(base_url().'Thanks', 'refresh');
-        } else {
-            $upload_data = $this->upload->data();
-            $data_ary = array(
-                'id' => $id,
-                'destination' => $destination,
-                'name' => $name,
-                'email' => $email,
-                'phone_no' => $phone_no,
-                'occupation' => $occupation,
-                'message' => $message,
-                'que' => $que,
-                'e_id' => '0',
-                'date_added' =>  date("Y/m/d"),
-                'datafile' => $upload_data['file_name']
-            );
+    //         $result = $this->Leads_model->added_leads($data_ary);
+    //         redirect(base_url().'Thanks', 'refresh');
+    //     } else {
+    //         $upload_data = $this->upload->data();
+    //         $data_ary = array(
+    //             'id' => $id,
+    //             'destination' => $destination,
+    //             'name' => $name,
+    //             'email' => $email,
+    //             'phone_no' => $phone_no,
+    //             'occupation' => $occupation,
+    //             'message' => $message,
+    //             'que' => $que,
+    //             'e_id' => '0',
+    //             'date_added' =>  date("Y/m/d"),
+    //             'datafile' => $upload_data['file_name']
+    //         );
 
-            $result = $this->Leads_model->added_leads($data_ary);
-            redirect(base_url().'Thanks', 'refresh');
-        }
-    }
+    //         $result = $this->Leads_model->added_leads($data_ary);
+    //         redirect(base_url().'Thanks', 'refresh');
+    //     }
+    // }
 
     public function added_aipp_leads()
     {

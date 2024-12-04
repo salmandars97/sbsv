@@ -16,7 +16,7 @@ class Leads_model extends CI_Model {
 			$this->db->where('e_id', null);
 		}
         //$this->db->order_by('assessment.id', 'DESC');
-        $query = $this->db->get();
+        $query = $this->db->order_by('id', 'desc')->get();
         return $query->result();
     }
 
