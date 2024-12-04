@@ -1,0 +1,85 @@
+.post.hentry{margin: 10px;}
+.post-outer:nth-child(1) .post-title,
+.post-outer:nth-child(9) .post-title,
+.post-outer:nth-child(6) .post-title,
+.post-outer:nth-child(7) .post-title {
+	height: 40px;
+}
+.post-outer:nth-child(1) .post-title a,
+.post-outer:nth-child(9) .post-title a,
+.post-outer:nth-child(6) .post-title a,
+.post-outer:nth-child(7) .post-title a {
+	font-size: 28px;
+}
+.post-outer:nth-child(1) .contento,
+.post-outer:nth-child(9) .contento,
+.post-outer:nth-child(6) .contento,
+.post-outer:nth-child(7) .contento {
+	font-size: 19px;
+}
+.post-outer:nth-child(1) .contento,
+.post-outer:nth-child(9) .contento {
+	height: auto;
+	font-size: 19px;
+}
+.post-outer:nth-child(1) .overlay-child-a,
+.post-outer:nth-child(1) .overlay-child-b,
+.post-outer:nth-child(9) .overlay-child-a,
+.post-outer:nth-child(9) .overlay-child-b,
+.post-outer:nth-child(6) .overlay-child-a,
+.post-outer:nth-child(6) .overlay-child-b,
+.post-outer:nth-child(7) .overlay-child-a,
+.post-outer:nth-child(7) .overlay-child-b {
+	transform:none;
+	opacity:1;
+}
+.post-outer:nth-child(1),.post-outer:nth-child(9){width: 66.67%;}
+.post-outer:nth-child(6),.post-outer:nth-child(7){width: 50%;}
+
+
+#outer-wrapper{width:1200px;padding:0;}
+.navigation{z-index:999999999999999;}
+#main-wrapper{padding:0 1px;width:100%;max-width:none;box-shadow:none;background:transparent;margin:0;}
+#rsidebar-wrapper,.postmeta-primary{display:none;}
+span.main-overlay{content:no-close-quote;position:absolute;margin-top:299px;display:block;z-index:200;width:100%;height:151px;opacity:.9;}
+h1.post-title{display:none;}
+.post{margin:0;}
+.xoai6-overlay{display:block;bottom:0;position:absolute;z-index:999999;overflow:hidden;}
+.overlay-child-a{transform:translateY(70px);transition:all 0.5s ease;-webkit-transition:all 0.5s ease;-moz-transition:all 0.5s ease;-o-transition:all 0.5s ease;}
+.turbo-box:hover .overlay-child-a{transform:none;}
+.turbo-box:hover .overlay-child-b{opacity:1;transform:none;}
+.overlay-child-b{padding:15px 0 40px 0;opacity:0;transform:translateY(70px);transition:all 0.5s ease;-webkit-transition:all 0.5s ease;-moz-transition:all 0.5s ease;-o-transition:all 0.5s ease;}
+.wrapfullpost{width:100%;}
+.post-outer{width:33.33%;padding:0;border:none;float:left;margin:0;}
+.post-anime img{transition:all 0.2s ease;-webkit-transition:all 0.2s ease;-moz-transition:all 0.2s ease;-o-transition:all 0.2s ease;opacity:0.7;}
+.postmeta-primary{margin-left:30px;}
+.turbo-box{box-shadow:none;padding:0;}
+.post-body img{clear:left;float:left;margin-bottom:-1em;margin-right:1em;height:221px;margin-top:-93px;}
+.contento{color:#fff;line-height:1.600;font-size:18px;padding:15px 40px;display:inline-block;height:75px;overflow:hidden;}
+.post-title{height:75px;line-height:27px;display:inline-block;text-align:left;padding:0;margin:0 40px;overflow:hidden;letter-spacing:0;}
+.post-title a,.post-title a:visited,.post-title strong{height:75px;overflow:hidden;font-size:26px;text-transform:capitalize;line-height:1.364;font-weight:400;text-decoration:none;display:block;}
+#blog-pager{text-align:center;overflow:visible;float:left;width:100%;margin-top:30px;display:block;}
+
+@media screen and (max-width: 1220px) {
+#outer-wrapper,#main-wrapper{width:100%;}
+.post-outer{width:50%!important;}
+.overlay-child-a,.overlay-child-b{transform:none;opacity:1;}
+.post-title,.post-title a{max-height:75px!important;height:auto!important;}
+.contento{max-height:90px!important;height:auto!important;margin-bottom:15px;padding:15px 40px 0 40px;font-size:19px!important;}
+}
+@media screen and (max-width : 800px) {
+.post-outer{width:100%!important;}
+span.main-overlay{margin-top:329px;}
+.post-anime img{height:480px;}
+}
+@media screen and (max-width: 500px) {
+.post-title,.post-title a{max-height:113px!important;}
+.contento{max-height:125px!important;}
+}
+@media screen and (max-width: 400px) {
+.post-anime img{height:300px;}
+.contento,.overlay-child-b{display:none;}
+span.main-overlay{margin-top:149px;}
+.post-title{margin:0 20px 30px 20px!important;}
+.post-title,.post-title a{max-height:95px!important;font-size:22px!important;}
+}

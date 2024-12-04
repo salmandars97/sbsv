@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://www.sbsv.test/</loc>
+  <lastmod>2019-04-08T07:35:07+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.sbsv.test/Home</loc>
+  <lastmod>2019-04-08T07:35:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sbsv.test/About</loc>
+  <lastmod>2019-04-08T07:35:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sbsv.test/Faq</loc>
+  <lastmod>2019-04-08T07:35:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sbsv.test/Testimonials</loc>
+  <lastmod>2019-04-08T07:35:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sbsv.test/Payment</loc>
+  <lastmod>2019-04-08T07:35:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sbsv.test/Contact</loc>
+  <lastmod>2019-04-08T07:35:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sbsv.test/Crm</loc>
+  <lastmod>2019-04-08T07:35:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sbsv.test/US</loc>
+  <lastmod>2019-04-08T07:35:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sbsv.test/Canada</loc>
+  <lastmod>2019-04-08T07:35:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sbsv.test/UK</loc>
+  <lastmod>2019-04-08T07:35:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sbsv.test/Australia</loc>
+  <lastmod>2019-04-08T07:35:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sbsv.test/NZ</loc>
+  <lastmod>2019-04-08T07:35:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.sbsv.test/Schengen</loc>
+  <lastmod>2019-04-08T07:35:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
+</urlset>
