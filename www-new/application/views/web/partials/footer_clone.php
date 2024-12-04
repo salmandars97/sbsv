@@ -190,10 +190,23 @@
         <script src="<?php echo base_url();?>assets_clone/js/theme.js"></script>
         <script src="<?php echo base_url().'assets/web/tel/build/js/intlTelInput.min.js'?> "></script>
         <script>
+
+		function count_view() {
+			$.ajax({
+				type: "POST",
+				url: "https://stepbystepvisas.com/home/hit_view_count",
+				dataType: "json",
+				data: {pagetitle: document.title}
+       		 });
+		}
+		count_view();
+
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('.new-menu').classList.toggle('active');
         });
             
+
+
             
         var input = document.querySelector("#phone");
 		window.intlTelInput(input, {
